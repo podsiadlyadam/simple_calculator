@@ -16,7 +16,7 @@ export const Display = ({ value }) => {
           paddingTop: "30px",
         }}
       >
-        {value}
+        {value.toString().replace(".", ",")}
       </div>
     </div>
   );

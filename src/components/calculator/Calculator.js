@@ -52,6 +52,18 @@ export const Calculator = () => {
     setClipboardData(calculated);
   };
 
+  const handleComa = () => {
+    setResult((prevState) => {
+      return prevState.toString() + ".";
+    });
+  };
+
+  const handleChangeSign = () => {
+    setResult((prevState) => {
+      return parseFloat(prevState) * -1;
+    });
+  };
+
   return (
     <div
       style={{
@@ -75,7 +87,7 @@ export const Calculator = () => {
         }}
       >
         <Button color={"#414546"} title={"AC"} onClick={handleAC} />
-        <Button color={"#414546"} title={"+/-"} />
+        <Button color={"#414546"} title={"+/-"} onClick={handleChangeSign} />
         <Button color={"#414546"} title={"%"} />
         <Button
           color={"#FF9E0C"}
@@ -186,7 +198,7 @@ export const Calculator = () => {
             handleNumber(0);
           }}
         />
-        <Button title={","} />
+        <Button title={","} onClick={handleComa} />
         <Button color={"#FF9E0C"} title={"="} onClick={handleCalculate} />
       </div>
     </div>
