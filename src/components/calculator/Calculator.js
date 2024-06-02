@@ -1,9 +1,55 @@
 import { Display } from "./components/Display";
 import { Button } from "./components/Button";
+import { useState } from "react";
 
 export const Calculator = () => {
+  const [clipboardData, setClipboardData] = useState(0);
+  const [result, setResult] = useState(0);
+  const [symbol, setSymbol] = useState("");
+
   const handleAC = () => {
-    console.log("ac");
+    setResult(0);
+    setClipboardData(0);
+  };
+
+  const handleNumber = (number) => {
+    setResult((prevState) => {
+      if (parseFloat(prevState) === 0) {
+        return number.toString();
+      }
+
+      return prevState.toString() + number;
+    });
+  };
+
+  const handleSymbol = (symbol) => {
+    setSymbol(symbol);
+    setClipboardData(result);
+    setResult(0);
+  };
+
+  const handleCalculate = () => {
+    let calculated = 0;
+
+    if (symbol === "+") {
+      calculated = parseFloat(result) + parseFloat(clipboardData);
+    }
+
+    if (symbol === "-") {
+      calculated = parseFloat(result) - parseFloat(clipboardData);
+    }
+
+    if (symbol === "x") {
+      calculated = parseFloat(result) * parseFloat(clipboardData);
+    }
+
+    if (symbol === "/") {
+      calculated = parseFloat(result) / parseFloat(clipboardData);
+    }
+
+    setResult(calculated);
+    setSymbol("");
+    setClipboardData(calculated);
   };
 
   return (
@@ -21,7 +67,7 @@ export const Calculator = () => {
         overflow: "hidden",
       }}
     >
-      <Display />
+      <Display value={result} />
       <div
         style={{
           display: "flex",
@@ -31,7 +77,11 @@ export const Calculator = () => {
         <Button color={"#414546"} title={"AC"} onClick={handleAC} />
         <Button color={"#414546"} title={"+/-"} />
         <Button color={"#414546"} title={"%"} />
-        <Button color={"#FF9E0C"} title={"/"} />
+        <Button
+          color={"#FF9E0C"}
+          title={"/"}
+          onClick={() => handleSymbol("/")}
+        />
       </div>
       <div
         style={{
@@ -39,10 +89,29 @@ export const Calculator = () => {
           flex: 1,
         }}
       >
-        <Button title={"7"} />
-        <Button title={"8"} />
-        <Button title={"9"} />
-        <Button color={"#FF9E0C"} title={"x"} />
+        <Button
+          title={"7"}
+          onClick={() => {
+            handleNumber(7);
+          }}
+        />
+        <Button
+          title={"8"}
+          onClick={() => {
+            handleNumber(8);
+          }}
+        />
+        <Button
+          title={"9"}
+          onClick={() => {
+            handleNumber(9);
+          }}
+        />
+        <Button
+          color={"#FF9E0C"}
+          title={"x"}
+          onClick={() => handleSymbol("x")}
+        />
       </div>
       <div
         style={{
@@ -50,10 +119,29 @@ export const Calculator = () => {
           flex: 1,
         }}
       >
-        <Button title={"4"} />
-        <Button title={"5"} />
-        <Button title={"6"} />
-        <Button color={"#FF9E0C"} title={"-"} />
+        <Button
+          title={"4"}
+          onClick={() => {
+            handleNumber(4);
+          }}
+        />
+        <Button
+          title={"5"}
+          onClick={() => {
+            handleNumber(5);
+          }}
+        />
+        <Button
+          title={"6"}
+          onClick={() => {
+            handleNumber(6);
+          }}
+        />
+        <Button
+          color={"#FF9E0C"}
+          title={"-"}
+          onClick={() => handleSymbol("-")}
+        />
       </div>
       <div
         style={{
@@ -61,10 +149,29 @@ export const Calculator = () => {
           flex: 1,
         }}
       >
-        <Button title={"1"} />
-        <Button title={"2"} />
-        <Button title={"3"} />
-        <Button color={"#FF9E0C"} title={"+"} />
+        <Button
+          title={"1"}
+          onClick={() => {
+            handleNumber(1);
+          }}
+        />
+        <Button
+          title={"2"}
+          onClick={() => {
+            handleNumber(2);
+          }}
+        />
+        <Button
+          title={"3"}
+          onClick={() => {
+            handleNumber(3);
+          }}
+        />
+        <Button
+          color={"#FF9E0C"}
+          title={"+"}
+          onClick={() => handleSymbol("+")}
+        />
       </div>
       <div
         style={{
@@ -72,9 +179,15 @@ export const Calculator = () => {
           flex: 1,
         }}
       >
-        <Button title={"0"} flexNumber={2} />
+        <Button
+          title={"0"}
+          flexNumber={2}
+          onClick={() => {
+            handleNumber(0);
+          }}
+        />
         <Button title={","} />
-        <Button color={"#FF9E0C"} title={"="} />
+        <Button color={"#FF9E0C"} title={"="} onClick={handleCalculate} />
       </div>
     </div>
   );

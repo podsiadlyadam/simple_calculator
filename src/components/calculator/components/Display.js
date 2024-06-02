@@ -1,4 +1,4 @@
-export const Display = () => {
+export const Display = ({ value }) => {
   return (
     <div
       style={{
@@ -16,7 +16,7 @@ export const Display = () => {
           paddingTop: "30px",
         }}
       >
-        0
+        {value}
       </div>
     </div>
   );
