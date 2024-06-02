@@ -64,6 +64,12 @@ export const Calculator = () => {
     });
   };
 
+  const handlePercentage = () => {
+    setResult((prevState) => {
+      return parseFloat(prevState) / 100;
+    });
+  };
+
   return (
     <div
       style={{
@@ -88,7 +94,7 @@ export const Calculator = () => {
       >
         <Button color={"#414546"} title={"AC"} onClick={handleAC} />
         <Button color={"#414546"} title={"+/-"} onClick={handleChangeSign} />
-        <Button color={"#414546"} title={"%"} />
+        <Button color={"#414546"} title={"%"} onClick={handlePercentage} />
         <Button
           color={"#FF9E0C"}
           title={"/"}
