@@ -36,15 +36,15 @@ export const Calculator = () => {
     }
 
     if (symbol === "-") {
-      calculated = parseFloat(result) - parseFloat(clipboardData);
+      calculated = parseFloat(clipboardData) - parseFloat(result);
     }
 
     if (symbol === "x") {
-      calculated = parseFloat(result) * parseFloat(clipboardData);
+      calculated = parseFloat(clipboardData) * parseFloat(result);
     }
 
     if (symbol === "/") {
-      calculated = parseFloat(result) / parseFloat(clipboardData);
+      calculated = parseFloat(clipboardData) / parseFloat(result);
     }
 
     setResult(calculated);
