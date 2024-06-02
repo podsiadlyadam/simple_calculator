@@ -2,6 +2,10 @@ import { Display } from "./components/Display";
 import { Button } from "./components/Button";
 
 export const Calculator = () => {
+  const handleAC = () => {
+    console.log("ac");
+  };
+
   return (
     <div
       style={{
@@ -14,6 +18,7 @@ export const Calculator = () => {
         borderStyle: "solid",
         display: "flex",
         flexDirection: "column",
+        overflow: "hidden",
       }}
     >
       <Display />
@@ -23,7 +28,7 @@ export const Calculator = () => {
           flex: 1,
         }}
       >
-        <Button color={"#414546"} title={"AC"} />
+        <Button color={"#414546"} title={"AC"} onClick={handleAC} />
         <Button color={"#414546"} title={"+/-"} />
         <Button color={"#414546"} title={"%"} />
         <Button color={"#FF9E0C"} title={"/"} />
@@ -37,7 +42,7 @@ export const Calculator = () => {
         <Button title={"7"} />
         <Button title={"8"} />
         <Button title={"9"} />
-        <Button color={"#FF9E0C"} title={"X"} />
+        <Button color={"#FF9E0C"} title={"x"} />
       </div>
       <div
         style={{

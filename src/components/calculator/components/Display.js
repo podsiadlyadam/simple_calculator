@@ -6,9 +6,18 @@ export const Display = () => {
         width: "100%",
         color: "white",
         fontSize: "72px",
+        textAlign: "right",
       }}
     >
-      0
+      <div
+        style={{
+          paddingRight: "20px",
+          paddingLeft: "20px",
+          paddingTop: "30px",
+        }}
+      >
+        0
+      </div>
     </div>
   );
 };
